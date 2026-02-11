@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <table border="2">
+        <form action="" method="post">
+            {% csrf_token%}
+            <tr>
+                <td>Number1</td>
+                <td><input type="text" name="txt_name" id="txt_name"></td>
+            </tr>
+            <tr>
+                <td>Number2</td>
+                <td><input type="text" name="txt1_name" id="txt1_name"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btn_op" value="+">
+                    <input type="submit" name="btn_op" value="-">
+                    <input type="submit" name="btn_op" value="*">
+                    <input type="submit" name="btn_op" value="/">
+                </td>
+
+
+            </tr>
+            <tr>
+                <td>Result</td>
+                <td>{{result}}</td>
+            </tr>
+    </table>
+    </form>
+</body>
+
+</html>
