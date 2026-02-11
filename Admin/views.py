@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Admin.models import *
 # Create your views here.
 
@@ -15,7 +15,7 @@ def Admin_registration(request):
         return render(request,"Admin/Admin_registration.html",{'Admin':Admin_registration})
 
 def Category(request):
-
+    category = tbl_category.objects.all()
     if request.method=='POST':
         name1=request.POST.get('txt_category')
         tbl_category.objects.create(category_name=name1)
@@ -33,6 +33,10 @@ def District(request):
         return render(request,"Admin/District.html")
     else:
         return render(request,"Admin/District.html",{"district":district})
+    
+def deletedistrict(request, id):
+    tbl_district.objects.get(id=id).delete()
+    return redirect('Admin:District')
 
 def Place(request):
     return render(request,"Admin/Place.html")

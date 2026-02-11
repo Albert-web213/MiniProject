@@ -30,7 +30,7 @@
         <tr>
             <td>{{forloop.counter}}</td>
             <td>{{i.district_name}}</td>
-            <td></td>
+            <td><a href="{% url 'Admin:deletedistrict' i.id %}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
