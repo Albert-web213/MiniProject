@@ -27,12 +27,14 @@
             <td>Category</td>
             <td>Action</td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+        {% for i in category %}
+        <tr>            
+            <td>{{forloop.counter}}</td>
+            <td>{{i.category_name}}</td>
+            <td><a href="{% url 'Admin:delete_category' i.id %}">Delete</a></td>
         </tr>
-    </table>
+        {% endfor %}   
+     </table>
    
 </body>
 </html>

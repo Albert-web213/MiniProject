@@ -6,12 +6,13 @@
     <title>Place</title>
 </head>
 <body>
+    <form action="" method="post">
+        {%csrf_token%}
     <table border="2">
         <tr>
             <td>District</td>
             <td><select name="District" id="district">
                 <option value="">--Select District--</option>
-                
             </select></td>
         </tr>
         <tr>
@@ -25,18 +26,22 @@
     </table>
     <br>
     <table border="2">
+     
         <tr>
             <td>Si.No</td>
             <td>District</td>
             <td>place</td>
             <td>Action</td>
         </tr>
+        {% for i in place%}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.district_name}}</td>
+            <td>{{place_name}}</td>
+            <td><a href="{% url 'Admin:deleteplace' i.id %}">Delete</a></td>
         </tr>
+        {% endfor %}
     </table>
+    </form>
 </body>
 </html>

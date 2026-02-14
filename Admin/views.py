@@ -21,7 +21,16 @@ def Category(request):
         tbl_category.objects.create(category_name=name1)
         return render(request,"Admin/Category.html")
     else:
-        return render(request,"Admin/Category.html")
+        return render(request,"Admin/Category.html",{"category":category})
+    
+def delete_Category(request,id):
+    tbl_category.objects.get(id=id).delete()
+    return redirect('Admin:Category')
+
+def editCategory(request,id):
+    editdata=tbl_category.objects.get(id=id)
+    if request.method=='POST':
+        name1=request.POST.get()
 
 def District(request):
     district = tbl_district.objects.all()
@@ -30,7 +39,7 @@ def District(request):
         name=request.POST.get('txt_name')
         #insert qry -->
         tbl_district.objects.create(district_name=name)
-        return render(request,"Admin/District.html")
+        return redirect('Admin:District')
     else:
         return render(request,"Admin/District.html",{"district":district})
     
@@ -38,8 +47,29 @@ def deletedistrict(request, id):
     tbl_district.objects.get(id=id).delete()
     return redirect('Admin:District')
 
+def editdistrict(request, id):
+    editdata=tbl_district.objects.get(id=id)
+    if request.method=='POST':
+        name=request.POST.get('txt_name')
+        editdata.district_name=name
+        editdata.save()
+        return redirect('Admin:District')
+    else:
+        return render(request,"Admin/District.html",{'editdata':editdata})
+
 def Place(request):
-    return render(request,"Admin/Place.html")
+    place=tbl_place.objects.all()
+    if request.method=='POST':
+            name=request.POST.get('District')
+            place=request.POST.get('txt_place')
+            tbl_place.objects.create(district_name=name,place_name=place)
+            return render(request,"Admin/Place.html")
+    else:   
+        return render(request,"Admin/Place.html",{"place":place})
+
+def deleteplace(request,id1):
+    tbl_place.objects.get(id=id1).delete()
+    return redirect('Admin:Place')
 
 def Subcategory(request):
     return render(request,"Admin/Subcategory.html")

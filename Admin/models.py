@@ -11,3 +11,7 @@ class tbl_admin(models.Model):
     admin_name=models.CharField(max_length=30)
     admin_email=models.CharField(max_length=30)
     admin_password=models.CharField(max_length=30)
+
+class tbl_place(models.Model):
+    district_name=models.CharField(max_length=30)
+    place_name=models.CharField(max_length=30)
