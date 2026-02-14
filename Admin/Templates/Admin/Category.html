@@ -11,7 +11,7 @@
     <table border="2">txt_category
         <tr>
             <td>Category</td>
-            <td><input type="text" name="txt_category" id="txt_category"></td>
+            <td><input type="text" name="txt_category" id="txt_category" value="{{editdata.category_name}}"></td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="submit" value="Submit"></td>
@@ -31,7 +31,8 @@
         <tr>            
             <td>{{forloop.counter}}</td>
             <td>{{i.category_name}}</td>
-            <td><a href="{% url 'Admin:delete_category' i.id %}">Delete</a></td>
+            <td><a href="{% url 'Admin:delete_category' i.id %}">Delete</a>
+            <a href="{% url 'Admin:editCategory' i.id  %}">Edit</a></td>
         </tr>
         {% endfor %}   
      </table>

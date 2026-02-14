@@ -15,3 +15,7 @@ class tbl_admin(models.Model):
 class tbl_place(models.Model):
     district_name=models.CharField(max_length=30)
     place_name=models.CharField(max_length=30)
+
+
+class tbl_Subcategory(models.Model):
+    category_name=models.CharField(max_length=30)

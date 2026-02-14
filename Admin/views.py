@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect 
+#import
 from Admin.models import *
 # Create your views here.
 
@@ -30,7 +31,14 @@ def delete_Category(request,id):
 def editCategory(request,id):
     editdata=tbl_category.objects.get(id=id)
     if request.method=='POST':
-        name1=request.POST.get()
+        name=request.POST.get('txt_category')
+        editdata.category_name=name
+        editdata.save()
+        return redirect('Admin:Category')
+    else:
+        return render(request,"Admin/Category.html",{"editdata":editdata})
+
+
 
 def District(request):
     district = tbl_district.objects.all()
@@ -58,6 +66,7 @@ def editdistrict(request, id):
         return render(request,"Admin/District.html",{'editdata':editdata})
 
 def Place(request):
+    districtData=tbl_district.objects.all()
     place=tbl_place.objects.all()
     if request.method=='POST':
             name=request.POST.get('District')
@@ -65,11 +74,15 @@ def Place(request):
             tbl_place.objects.create(district_name=name,place_name=place)
             return render(request,"Admin/Place.html")
     else:   
-        return render(request,"Admin/Place.html",{"place":place})
+        return render(request,"Admin/Place.html",{"place":place,'districtData':districtData})
 
 def deleteplace(request,id1):
     tbl_place.objects.get(id=id1).delete()
     return redirect('Admin:Place')
 
 def Subcategory(request):
-    return render(request,"Admin/Subcategory.html")
+    SubData=tbl_category.objects.all()
+    if request.method=='POST':
+        return render(request,"Admin/Subcategory.html")
+    else:
+        return render(request,"Admin/Subcategory.html",{"SubData":SubData})

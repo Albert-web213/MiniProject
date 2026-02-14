@@ -13,6 +13,9 @@
             <td>District</td>
             <td><select name="District" id="district">
                 <option value="">--Select District--</option>
+                {% for i in districtData %}
+                <option value="">{{i.district_name}}</option>
+                {% endfor %}
             </select></td>
         </tr>
         <tr>

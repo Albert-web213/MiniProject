@@ -1,4 +1,5 @@
 from django.urls import path
+#import 
 from Admin import views
 
 app_name="Admin"
@@ -14,7 +15,9 @@ urlpatterns = [
    path('Subcategory/',views.Subcategory,name="Subcategory"),
 
    path('Category/',views.Category,name="Category"),
-   path('Category/<int:id>',views.delete_Category,name="delete_category"),
-   
+   path('delete_category/<int:id>',views.delete_Category,name="delete_category"),
+   path('editCategory/<int:id>',views.editCategory,name="editCategory"),
+
+
    path('Admin_registration/',views.Admin_registration,name="Admin_registration")
 ]
