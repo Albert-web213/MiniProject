@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subcategory</title>
@@ -11,10 +11,10 @@
     <table border="2">
         <tr>
             <td>Category</td>
-            <td><select name="Select" id="Category">
+            <td><select name="sel_category" id="sel_category">
                 <option value="">---Select-Category---</option>
-                {% for i in  SubData %}
-                <option value="">{{i.category_name}}</option>
+                {% for i in  categorydata %}
+                <option value="{{i.id}}">{{i.category_name}}</option>
                 {% endfor %}
             </select></td>
         </tr>

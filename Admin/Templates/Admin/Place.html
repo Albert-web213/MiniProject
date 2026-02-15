@@ -11,16 +11,16 @@
     <table border="2">
         <tr>
             <td>District</td>
-            <td><select name="District" id="district">
+            <td><select name="sel_district" id="sel_district">
                 <option value="">--Select District--</option>
                 {% for i in districtData %}
-                <option value="">{{i.district_name}}</option>
+                <option value="{{i.id}}">{{i.district_name}}</option>
                 {% endfor %}
             </select></td>
-        </tr>
+        </tr>                         
         <tr>
             <td>Place</td>
-            <td><input type="text" name="txt_place" id="txt_place"></td>
+            <td><input type="text" name="txt_place" id="txt_place"  value="{{editdata.place}}"></td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="submit" value="Submit"></td>
@@ -39,9 +39,10 @@
         {% for i in place%}
         <tr>
             <td>{{forloop.counter}}</td>
-            <td>{{i.district_name}}</td>
-            <td>{{place_name}}</td>
-            <td><a href="{% url 'Admin:deleteplace' i.id %}">Delete</a></td>
+            <td>{{i.district.district_name}}</td>
+            <td>{{i.place}}</td>
+            <td><a href="{% url 'Admin:deleteplace' i.id %}">Delete</a>
+            <a href="{% url  'Admin:editplace'  i.id %}">Edit</a></td>
         </tr>
         {% endfor %}
     </table>

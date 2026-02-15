@@ -6,6 +6,8 @@
     <title>UserRegistration</title>
 </head>
 <body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
     <table border="1">
         <tr>
             <td>Name</td>
@@ -27,7 +29,11 @@
             <td>District</td>
             <td><select name="District" id="District">
                 <option value="">---Select-District---</option>
+                {% for i in district %}
+                <option value="{{i.id}}">{{i.district_name}}</option>
+                {% endfor %}
             </select></td>
+            
         </tr>
         <tr>
             <td>Place</td>
@@ -48,5 +54,22 @@
             
         </tr>
     </table>
+    </form>
 </body>
+
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $("#District").change(function () {
+    var did = $(this).val();
+    var ur = "{% url 'Guest:ajaxplace' %}";
+    $.ajax({
+      url: ur,
+      data: { did: did },
+      success: function (data) {
+        $("#Place").html(data);
+      },
+    });
+  });
+</script>

@@ -5,12 +5,15 @@ from Admin import views
 app_name="Admin"
 
 urlpatterns = [
+   path('Homepage/',views.Homepage,name="Homepage"),
+
    path('District/',views.District,name="District"),
    path('deletedistrict/<int:id>',views.deletedistrict,name="deletedistrict"),
    path('editdistrict/<int:id>',views.editdistrict,name="editdistrict"),
 
    path('Place/',views.Place,name="Place"),
    path('deleteplace/<int:id1>',views.deleteplace,name="deleteplace"),
+   path('editplace/<int:id>',views.editplace,name="editplace"),
 
    path('Subcategory/',views.Subcategory,name="Subcategory"),
 

@@ -21,4 +21,5 @@ urlpatterns = [
    path('Basics/',include("Basics.urls")),
    path('Admin/',include("Admin.urls")),
    path('Guest/',include("Guest.urls")),
+   path('User/',include("User.urls"))
 ]

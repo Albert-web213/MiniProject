@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from Admin.models import *
 # Create your views here.
 
+def Homepage(request):
+    return render(request,"Admin/Homepage.html")
 
 def Admin_registration(request):
     Admin_registration=tbl_admin.objects.all()
@@ -69,10 +71,12 @@ def Place(request):
     districtData=tbl_district.objects.all()
     place=tbl_place.objects.all()
     if request.method=='POST':
-            name=request.POST.get('District')
+            #the name('District') is the value name used in select tag of dropdown
+            District_id=tbl_district.objects.get(id=request.POST.get('sel_district'))
             place=request.POST.get('txt_place')
-            tbl_place.objects.create(district_name=name,place_name=place)
-            return render(request,"Admin/Place.html")
+            #the names used is same in both views and models
+            tbl_place.objects.create(district=District_id,place=place)
+            return redirect('Admin:Place')
     else:   
         return render(request,"Admin/Place.html",{"place":place,'districtData':districtData})
 
@@ -80,9 +84,25 @@ def deleteplace(request,id1):
     tbl_place.objects.get(id=id1).delete()
     return redirect('Admin:Place')
 
-def Subcategory(request):
-    SubData=tbl_category.objects.all()
+def editplace(request,id):
+    editdata=tbl_place.objects.get(id=id)
     if request.method=='POST':
-        return render(request,"Admin/Subcategory.html")
+        name=request.POST.get('txt_place')
+        editdata.place=name
+        editdata.save()
+        return redirect('Admin:Place')
     else:
-        return render(request,"Admin/Subcategory.html",{"SubData":SubData})
+         return render(request,"Admin/Place.html",{"editdata":editdata})
+
+
+
+def Subcategory(request):
+    categorydata=tbl_category.objects.all()
+    if request.method=='POST':
+        #dropdown ,so we use the foreign key concept,id is taken and value as stored and itself stored in category_id
+        category_id = tbl_category.objects.get(id= request.POST.get("sel_category"))
+        subcategoryname = request.POST.get("txt_Sub")
+        tbl_subcategory.objects.create(category=category_id,subcategory_name=subcategoryname)
+        return redirect('Admin:Subcategory')
+    else:
+        return render(request,"Admin/Subcategory.html",{"categorydata":categorydata})

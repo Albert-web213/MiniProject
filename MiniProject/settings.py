@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Basics',
     'Admin',
     'Guest',
+    'User',
     
 ]
 
