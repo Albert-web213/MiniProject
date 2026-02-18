@@ -16,7 +16,7 @@ def Login(request):
             request.session['aid'] = admindata.id
             return redirect("Admin:Homepage")
         elif usercount > 0:
-            userdata=tbl_user.objects.filter.get(user_email=email,user_password=password)
+            userdata=tbl_user.objects.get(user_email=email,user_password=password)
             request.session['uid']=userdata.id
             return redirect("User:Homepage")
         else:
@@ -43,3 +43,26 @@ def ajaxplace(request):
     place=tbl_place.objects.filter(district=districtid)
     #melilulla place
     return render(request,"Guest/AjaxPlace.html",{"place":place})
+
+def CivilEngineering(request):
+    district=tbl_district.objects.all()
+    if request.method=='POST':
+        name=request.POST.get('txt_name')
+        email=request.POST.get('email')
+        contact=request.POST.get('txt_contact')
+        address=request.POST.get('Address')
+        photo=request.FILES.get('file')
+        proof=request.FILES.get('file')
+        place=tbl_place.objects.get(id=request.POST.get('Place'))
+        password=request.POST.get('Password')
+        tbl_civilengineering.objects.create(civileng_name=name,civileng_email=email,civileng_contact=contact,civileng_address=address,civileng_photo=photo,civileng_proof=proof,place_id=place,civileng_password=password)
+        return render(request,"Guest/CivilEngineering.html")
+    else:
+        return render(request,"Guest/CivilEngineering.html",{"district":district})
+    
+
+def ajaxplace(request):
+    districtid=tbl_district.objects.get(id=request.GET.get("did"))
+    place_id=tbl_place.objects.filter(district=districtid)
+    #melilulla place
+    return render(request,"Guest/AjaxPlace.html",{"place":place_id})

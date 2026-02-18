@@ -7,43 +7,44 @@
 </head>
 <body>
     <form action="" method="post">
-       <table>
+       <table border="1">
+        <tr>
+            <td colspan="2" align="center"><img src="C:\Users\ALBERT GEORGE\OneDrive\Pictures\Camera Roll\WIN_20260215_11_43_05_Pro.jpg" width="max" height="max"></td>
+            
+        </tr>
         <tr>
             <td>Name</td>
-            <td input type="text" id="txt_name" value="txt_name"></td>
+            <td>{{userdata.user_name}}</td>
             
         </tr>
         <tr>
             <td>Email</td>
-            <td input type="email" name="email" id="email" ></td>
+            <td>{{userdata.user_email}}</td>
             
         </tr>
         <tr>
             <td>Contact</td>
-            <td input type="text" name="contact"  id="contact" ></td>
+            <td>{{userdata.user_contact}}</td>
             
         </tr>
         <tr>
             <td>Address</td>
-            <td input type="textarea" name="Address" id="Address"></td>
+            <td>{{userdata.user_address}}</td>
            
         </tr>
         <tr>
             <td>District</td>
-            <td input type="text" name="district" id="district"></td>
+            <td>{{userdata.place.district.district_name}}</td>
         </tr>
         <tr>
             <td>Place</td>
-            <td input type="text" name="place" id="place"></td>
+            <td>{{userdata.place.place}}</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td><a href="">Edit Profile</a></td>
+            <td><a href="">Change Password</a></td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
+        
        </table>
 
     </form>

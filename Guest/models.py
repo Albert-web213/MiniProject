@@ -10,3 +10,12 @@ class tbl_user(models.Model):
     user_password=models.CharField(max_length=30)
     place=models.ForeignKey(tbl_place,on_delete=models.CASCADE)
 
+class tbl_civilengineering(models.Model):
+    civileng_name=models.CharField(max_length=30)
+    civileng_email=models.CharField(max_length=30)
+    civileng_contact=models.CharField(max_length=30)
+    civileng_address=models.CharField(max_length=30)
+    civileng_photo=models.FileField(max_length=30)
+    civileng_proof=models.FileField(max_length=30)
+    civileng_password=models.CharField(max_length=30)
+    place_id=models.ForeignKey(tbl_place,on_delete=models.CASCADE)
