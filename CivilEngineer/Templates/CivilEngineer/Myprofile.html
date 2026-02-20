@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+       <table border="1">
+        <tr>
+            <td colspan="2" align="center"><img src="C:\Users\ALBERT GEORGE\OneDrive\Pictures\Camera Roll\WIN_20260215_11_43_05_Pro.jpg" width="max" height="max"></td>
+            
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{userdata.user_name}}</td>
+            
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{userdata.user_email}}</td>
+            
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{userdata.user_contact}}</td>
+            
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{userdata.user_address}}</td>
+           
+        </tr>
+        <tr>
+            <td>District</td>
+            <td>{{userdata.place.district.district_name}}</td>
+        </tr>
+        <tr>
+            <td>Place</td>
+            <td>{{userdata.place.place}}</td>
+        </tr>
+        <tr>
+            <td><a href="">Edit Profile</a></td>
+            <td><a href="">Change Password</a></td>
+        </tr>
+        
+       </table>
+
+    </form>
+</body>
+</html>

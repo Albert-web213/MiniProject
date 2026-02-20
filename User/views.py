@@ -23,6 +23,19 @@ def Editprofile(request):
 
 
 def ChangePassword(request):
+    if request.method=='POST':
+        new_password=request.POST.get('new_password')
+        confirm_password=request.POST.get('retype_password')
+        old_password=request.POST.get('old_password')
+        user = tbl_user.objects.get(id=request.session['uid'])
+        if user.user_password==old_password:
+            if new_password==confirm_password: 
+                user.user_password=confirm_password 
+                user.save()
+            else:
+                return render(request,"User/ChangePassword.html",{'msg':"Invlaid password"})
+        else:   
+            return render(request,"User/ChangePassword.html",{'msg':"Old password has error"})
     return render(request,"User/ChangePassword.html")
 
 def Homepage(request):

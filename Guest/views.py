@@ -9,7 +9,7 @@ def Login(request):
         password = request.POST.get("Password")
         admincount = tbl_admin.objects.filter(admin_email=email,admin_password=password).count()
         usercount=tbl_user.objects.filter(user_email=email,user_password=password).count()
-
+        civilcount=tbl_civilengineering.objects.filter(civileng_email=email,civileng_password=password).count()
         if admincount > 0:
             admindata = tbl_admin.objects.get(admin_email=email,admin_password=password)
             #login cheyyuna persons data is stored in session
@@ -19,6 +19,10 @@ def Login(request):
             userdata=tbl_user.objects.get(user_email=email,user_password=password)
             request.session['uid']=userdata.id
             return redirect("User:Homepage")
+        elif civilcount > 0 :
+            civildata=tbl_civilengineering.objects.filter(civileng_email=email,civil_password=password)
+            request.session['cid']=civildata.id
+            return redirect("CivilEngineering:Homepage")
         else:
             return render(request,"Guest/Login.html",{'msg':"Invalid Email Or Password"})
     return render(request,"Guest/Login.html")
@@ -50,11 +54,11 @@ def CivilEngineering(request):
         name=request.POST.get('txt_name')
         email=request.POST.get('email')
         contact=request.POST.get('txt_contact')
-        address=request.POST.get('Address')
-        photo=request.FILES.get('file')
-        proof=request.FILES.get('file')
+        address=request.POST.get('txt_address')
+        photo=request.FILES.get('photo')
+        proof=request.FILES.get('txt_proof')
         place=tbl_place.objects.get(id=request.POST.get('Place'))
-        password=request.POST.get('Password')
+        password=request.POST.get('password')
         tbl_civilengineering.objects.create(civileng_name=name,civileng_email=email,civileng_contact=contact,civileng_address=address,civileng_photo=photo,civileng_proof=proof,place_id=place,civileng_password=password)
         return render(request,"Guest/CivilEngineering.html")
     else:
@@ -64,5 +68,5 @@ def CivilEngineering(request):
 def ajaxplace(request):
     districtid=tbl_district.objects.get(id=request.GET.get("did"))
     place_id=tbl_place.objects.filter(district=districtid)
-    #melilulla place
+    #melilulla place_id
     return render(request,"Guest/AjaxPlace.html",{"place":place_id})
