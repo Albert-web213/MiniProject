@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
     {%csrf_token%}
     <form action="" method="post">
@@ -18,10 +16,9 @@
                 <td>Contact</td>
                 <td>Address</td>
                 <td>Photo</td>
-                <td>Proof</td>
                 <td>Action</td>
             </tr>
-            {% for i in civilengineerdata %}
+            {% for i in civilengdata %}
             <tr>
                 <td>{{forloop.counter}}</td>
                 <td>{{i.civileng_name}}</td>
@@ -29,23 +26,9 @@
                 <td>{{i.civileng_contact}}</td>
                 <td>{{i.civileng_address}}</td>
                 <td><img src="{{i.civileng_photo.url}}" width="150" alt=""></td>
-                <td><a href="{{i.civileng_proof.url}}">View Proof</a></td>
-                <td colspan="2">
-                    {% if i.civileng_status == 0 %}
-                    <a href="{% url 'Admin:verify' i.id %}">Accept</a>
-                    <a href="{% url 'Admin:reject' i.id %}">Reject</a>
-                    {% elif i.civileng_status == 1 %}
-                    Accepted /
-                    <a href="{% url 'Admin:reject' i.id %}">Reject</a>
-                    {% else %}
-                    Rejected /
-                    <a href="{% url 'Admin:verify' i.id %}">Accept</a>
-                    {% endif %}
-                </td>
             </tr>
             {% endfor %}
         </table>
     </form>
 </body>
-
 </html>

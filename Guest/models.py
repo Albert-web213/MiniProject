@@ -20,3 +20,4 @@ class tbl_civilengineering(models.Model):
     civileng_password=models.CharField(max_length=30)
     place_id=models.ForeignKey(tbl_place,on_delete=models.CASCADE)
     civileng_status = models.IntegerField(default=0)
+
