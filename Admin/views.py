@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect 
 #import
 from Admin.models import *
+from Guest.models import *
 # Create your views here.
 
 def Homepage(request):
@@ -106,3 +107,21 @@ def Subcategory(request):
         return redirect('Admin:Subcategory')
     else:
         return render(request,"Admin/Subcategory.html",{"categorydata":categorydata})
+    
+
+def CivilEngineerVerification(request):
+    civilengineerdata=tbl_civilengineering.objects.all()
+    return render(request,"Admin/CivilEngineerVerification.html",{"civilengineerdata":civilengineerdata})
+
+
+def verify(request,aid):
+    civileng= tbl_civilengineering.objects.get(id=aid)
+    civileng.civileng_status = 1
+    civileng.save()
+    return redirect("Admin:CivilEngineerVerification")
+
+def reject(request,rid):
+    civileng=tbl_civilengineering.objects.get(id=rid)
+    civileng.civileng_status=2
+    civileng.save()
+    return redirect("Admin:CivilEngineerVerification")

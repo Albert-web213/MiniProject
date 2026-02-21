@@ -22,5 +22,10 @@ urlpatterns = [
    path('editCategory/<int:id>',views.editCategory,name="editCategory"),
 
 
-   path('Admin_registration/',views.Admin_registration,name="Admin_registration")
+   path('Admin_registration/',views.Admin_registration,name="Admin_registration"),
+
+
+   path('CivilEngineerVerification/',views.CivilEngineerVerification,name="CivilEngineerVerification"),
+   path('verify/<int:aid>',views.verify,name="verify"),
+   path('reject/<int:rid>',views.reject,name="reject")
 ]
