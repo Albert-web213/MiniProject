@@ -7,7 +7,7 @@ from CivilEngineer.models import*
 # Create your views here.
 def MyProfile(request):
     civildata= tbl_civilengineering.objects.get(id=request.session['cid'])
-    return render(request,"User/MyProfile.html",{'civildata':civildata})
+    return render(request,"CivilEngineer/MyProfile.html",{'civildata':civildata})
 
 def Editprofile(request):
     civildata=tbl_civilengineering.objects.get(id=request.session['cid'])

@@ -5,5 +5,6 @@ urlpatterns = [
    path('Login/',views.Login,name="Login"),
    path('UserRegistration/',views.UserRegistration,name="UserRegistration"),
    path('ajaxplace/',views.ajaxplace,name="ajaxplace"),
-   path('CivilEngineering/',views.CivilEngineering,name="CivilEngineering")
+   path('CivilEngineering/',views.CivilEngineering,name="CivilEngineering"),
+   path('index/',views.index,name="index")
 ]

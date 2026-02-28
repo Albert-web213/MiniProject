@@ -2,31 +2,176 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Login | Welcome Back</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            display: flex;
+            width: 100%;
+            max-width: 950px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+
+        .login-left {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 50px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-left h2 {
+            font-weight: 700;
+        }
+
+        .login-left p {
+            opacity: 0.9;
+        }
+
+        .login-right {
+            width: 50%;
+            padding: 50px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .form-control:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.15);
+        }
+
+        .btn-premium {
+            background: #2563eb;
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-premium:hover {
+            background: #1d4ed8;
+        }
+
+        .login-title {
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        @media(max-width:768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            .login-left, .login-right {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table border="1">
-        <tr>
-            <td>Email</td>
-            <td><input type="email" name="email" id="email"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="Password" id="Password"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center"><input type="submit" value="Login"></td>
-          
-        </tr>
-    </table>
-    </form>
+
+<div class="login-container">
+
+    <!-- Left Branding Section -->
+    <div class="login-left">
+        <h2>Welcome Back</h2>
+        <p>Login to access your dashboard and manage your activities securely.</p>
+    </div>
+
+    <!-- Right Form Section -->
+    <div class="login-right">
+
+        <div class="login-title">Sign In</div>
+
+        {% if msg %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       placeholder="Enter your email"
+                       required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="password"
+                           name="Password"
+                           id="Password"
+                           class="form-control"
+                           placeholder="Enter your password"
+                           required>
+                    <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+                        <i class="fa fa-eye" id="eyeIcon"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-premium">
+                    Login to Account
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById("Password");
+        const icon = document.getElementById("eyeIcon");
+
+        if (password.type === "password") {
+            password.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            password.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
 </body>
 </html>
-{% if msg %}
-<script>
-    alert("{{msg}}")
-</script>
-{% endif %}

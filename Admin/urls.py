@@ -27,5 +27,8 @@ urlpatterns = [
 
    path('CivilEngineerVerification/',views.CivilEngineerVerification,name="CivilEngineerVerification"),
    path('verify/<int:aid>',views.verify,name="verify"),
-   path('reject/<int:rid>',views.reject,name="reject")
+   path('reject/<int:rid>',views.reject,name="reject"),
+
+   path('ViewComplaint/',views.ViewComplaint,name="ViewComplaint"),
+   path('Reply/<int:id>',views.Reply,name="Reply")
 ]

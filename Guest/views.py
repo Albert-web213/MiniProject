@@ -3,6 +3,13 @@ from Admin.models import*
 from Guest.models import*
 # Create your views here.
 
+
+
+def index(request):
+    return render(request,"Guest/index.html")
+
+
+
 def Login(request):
     if request.method == "POST":
         email = request.POST.get("email")
@@ -20,9 +27,9 @@ def Login(request):
             request.session['uid']=userdata.id
             return redirect("User:Homepage")
         elif civilcount > 0 :
-            civildata=tbl_civilengineering.objects.filter(civileng_email=email,civil_password=password)
+            civildata=tbl_civilengineering.objects.get(civileng_email=email,civileng_password=password)
             request.session['cid']=civildata.id
-            return redirect("CivilEngineering:Homepage")
+            return redirect("CivilEngineer:Homepage")
         else:
             return render(request,"Guest/Login.html",{'msg':"Invalid Email Or Password"})
     return render(request,"Guest/Login.html")

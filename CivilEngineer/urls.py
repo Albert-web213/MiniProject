@@ -1,5 +1,6 @@
 from django.urls import path,include
-from User import views
+from CivilEngineer import views
+
 app_name='CivilEngineer'
 urlpatterns = [
   path('MyProfile/',views.MyProfile,name="MyProfile"),

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 #import
 from Admin.models import *
 from Guest.models import *
+from User.models import *
 # Create your views here.
 
 def Homepage(request):
@@ -50,7 +51,8 @@ def District(request):
         name=request.POST.get('txt_name')
         #insert qry -->
         tbl_district.objects.create(district_name=name)
-        return redirect('Admin:District')
+        return render(request,"Admin/District.html",{"msg":"Inserted"})
+
     else:
         return render(request,"Admin/District.html",{"district":district})
     
@@ -125,3 +127,21 @@ def reject(request,rid):
     civileng.civileng_status=2
     civileng.save()
     return redirect("Admin:CivilEngineerVerification")
+
+
+def ViewComplaint(request):
+    complaintdata=tbl_complaint.objects.all()
+    return render(request,"Admin/ViewComplaint.html",{"complaintdata":complaintdata})
+
+
+
+def Reply(request,id):
+    complaintData=tbl_complaint.objects.get(id=id)
+    if request.method=="POST":
+       reply=request.POST.get('txt_reply')
+       complaintData.complaint_reply=reply
+       complaintData.complaint_status=1
+       complaintData.save()
+       return render(request,"Admin/Reply.html")
+    else:
+        return render(request,"Admin/Reply.html")
