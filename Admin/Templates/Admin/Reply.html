@@ -1,23 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {%csrf_token%}
-        <table border="1">
-            <tr>
-                <td>Reply</td>
-                <td><input type="text" name="txt_reply" id="txt_reply"></td>
-            </tr>
-            <tr>
-                
-                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
-            </tr>
-        </table>
-    </form>
-</body>
-</html>
+{% extends 'Admin/Header.html' %}
+{% block content %}
+
+<div class="row">
+
+    <!-- Page Header -->
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Send Reply</h3>
+                <p class="text-muted">Respond to user queries professionally</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reply Form -->
+    <div class="col-lg-6 mx-auto grid-margin stretch-card">
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h4 class="card-title text-primary mb-4">
+                    <i class="fa fa-reply"></i> Write Reply
+                </h4>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label>Reply Message</label>
+                        <textarea name="txt_reply"
+                                  id="txt_reply"
+                                  rows="4"
+                                  class="form-control"
+                                  placeholder="Type your reply here..."
+                                  required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block mt-3">
+                        <i class="fa fa-paper-plane"></i> Submit Reply
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

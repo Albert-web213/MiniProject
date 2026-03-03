@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Complaint Module</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{% extends 'User/Header.html' %}
+{% block content %}
 
 <style>
-body {
-    font-family: 'Inter', sans-serif;
+.page-wrapper {
+    min-height: 85vh;
+    padding: 90px 0;
     background: linear-gradient(-45deg, #4f46e5, #7c3aed, #2563eb, #1e3a8a);
     background-size: 400% 400%;
     animation: gradientMove 12s ease infinite;
-    min-height: 100vh;
-    padding: 40px;
 }
 
 @keyframes gradientMove {
@@ -24,12 +16,12 @@ body {
     100% {background-position: 0% 50%;}
 }
 
-.card-custom {
-    background: rgba(255,255,255,0.1);
+.glass-card {
+    background: rgba(255,255,255,0.12);
     backdrop-filter: blur(18px);
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
     color: white;
     animation: fadeUp 0.8s ease;
 }
@@ -37,6 +29,11 @@ body {
 @keyframes fadeUp {
     from {opacity:0; transform: translateY(40px);}
     to {opacity:1; transform: translateY(0);}
+}
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 30px;
 }
 
 .form-group {
@@ -63,8 +60,8 @@ body {
     top: 14px;
     left: 15px;
     font-size: 14px;
-    transition: 0.3s;
     color: #ddd;
+    transition: 0.3s;
     pointer-events: none;
 }
 
@@ -84,7 +81,8 @@ body {
     border-radius: 12px;
     padding: 12px;
     font-weight: 600;
-    transition: 0.3s;
+    border: none;
+    transition: 0.3s ease;
 }
 
 .btn-modern:hover {
@@ -92,35 +90,42 @@ body {
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-.table-custom {
-    margin-top: 40px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 15px;
+.table-glass {
+    margin-top: 50px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
     overflow: hidden;
     color: white;
 }
 
-.table-custom th {
+.table-glass thead {
     background: rgba(255,255,255,0.2);
 }
 
-.table-custom tr {
-    transition: 0.3s;
+.table-glass th,
+.table-glass td {
+    border: none;
+    vertical-align: middle;
+}
+
+.table-glass tbody tr {
+    transition: 0.3s ease;
     animation: rowFade 0.6s ease forwards;
     opacity: 0;
 }
 
-.table-custom tr:nth-child(even) {
+.table-glass tbody tr:nth-child(even) {
     background: rgba(255,255,255,0.05);
 }
 
-.table-custom tr:hover {
+.table-glass tbody tr:hover {
     background: rgba(255,255,255,0.2);
     transform: scale(1.01);
 }
 
 @keyframes rowFade {
-    to {opacity:1;}
+    to {opacity: 1;}
 }
 
 .delete-link {
@@ -132,66 +137,72 @@ body {
 .delete-link:hover {
     text-decoration: underline;
 }
-
 </style>
-</head>
-<body>
 
-<div class="container">
+<div class="page-wrapper">
 
-    <div class="card-custom">
+    <div class="container">
 
-        <h4 class="mb-4">Submit Complaint</h4>
+        <!-- Complaint Form -->
+        <div class="glass-card mx-auto" style="max-width:600px;">
 
-        <form method="post">
-            {% csrf_token %}
+            <h4 class="section-title text-center">Submit Complaint</h4>
 
-            <div class="form-group">
-                <input type="text" name="txt_title" class="form-control" placeholder=" " required>
-                <label>Complaint Title</label>
-            </div>
+            <form method="post">
+                {% csrf_token %}
 
-            <div class="form-group">
-                <input type="text" name="txt_content" class="form-control" placeholder=" " required>
-                <label>Complaint Content</label>
-            </div>
+                <div class="form-group">
+                    <input type="text" name="txt_title" class="form-control" placeholder=" " required>
+                    <label>Complaint Title</label>
+                </div>
 
-            <button type="submit" class="btn btn-modern w-100">Submit Complaint</button>
+                <div class="form-group">
+                    <input type="text" name="txt_content" class="form-control" placeholder=" " required>
+                    <label>Complaint Content</label>
+                </div>
 
-        </form>
+                <button type="submit" class="btn btn-modern w-100">
+                    Submit Complaint
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Complaint Table -->
+        <div class="table-responsive">
+            <table class="table table-glass mt-5 text-center">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Date</th>
+                        <th>Reply</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in complaintdata %}
+                    <tr style="animation-delay: {{forloop.counter0}}00ms;">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.complaint_title}}</td>
+                        <td>{{i.complaint_content}}</td>
+                        <td>{{i.complaint_date}}</td>
+                        <td>{{i.complaint_reply}}</td>
+                        <td>
+                            <a href="{% url 'User:deletecomplaint' i.id %}" class="delete-link">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
     </div>
 
-    <table class="table table-custom mt-5">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Date</th>
-                <th>Reply</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in complaintdata %}
-            <tr style="animation-delay: {{forloop.counter0}}00ms;">
-                <td>{{forloop.counter}}</td>
-                <td>{{i.complaint_title}}</td>
-                <td>{{i.complaint_content}}</td>
-                <td>{{i.complaint_date}}</td>
-                <td>{{i.complaint_reply}}</td>
-                <td>
-                    <a href="{% url 'User:deletecomplaint' i.id%}" class="delete-link">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
 </div>
 
-</body>
-</html>
+{% endblock content %}

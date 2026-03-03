@@ -20,3 +20,4 @@ class tbl_place(models.Model):
 class tbl_subcategory(models.Model):
     category = models.ForeignKey(tbl_category,on_delete=models.CASCADE)
     subcategory_name= models.CharField(max_length=60)
+

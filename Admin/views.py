@@ -144,4 +144,4 @@ def Reply(request,id):
        complaintData.save()
        return render(request,"Admin/Reply.html")
     else:
-        return render(request,"Admin/Reply.html")
+        return render(request,"Admin/Reply.html",{"complaintData":complaintData})

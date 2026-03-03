@@ -1,135 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Civil Engineer Verification</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'Admin/Header.html' %}
+{% block content %}
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-light">
-
-<div class="container py-5">
+<div class="row">
 
     <!-- Page Header -->
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">Civil Engineer Verification</h2>
-        <p class="text-muted">Approve or reject engineer registration requests</p>
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Civil Engineer Verification</h3>
+                <p class="text-muted">
+                    Approve or reject engineer registration requests
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
+    <!-- Table Section -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover align-middle">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center">
 
-                    <thead class="table-dark text-center">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Contact</th>
-                            <th>Address</th>
-                            <th>Photo</th>
-                            <th>Proof</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Address</th>
+                                <th>Photo</th>
+                                <th>Proof</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
+                        <tbody>
 
-                        {% for i in civilengineerdata %}
-                        <tr class="text-center">
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ i.civileng_name }}</td>
-                            <td>{{ i.civileng_email }}</td>
-                            <td>{{ i.civileng_contact }}</td>
-                            <td>{{ i.civileng_address }}</td>
+                            {% for i in civilengineerdata %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td class="fw-semibold">{{ i.civileng_name }}</td>
+                                <td>{{ i.civileng_email }}</td>
+                                <td>{{ i.civileng_contact }}</td>
+                                <td>{{ i.civileng_address }}</td>
 
-                            <!-- Photo -->
-                            <td>
-                                <img src="{{ i.civileng_photo.url }}" 
-                                     class="rounded shadow-sm" 
-                                     width="80" height="80"
-                                     style="object-fit: cover;">
-                            </td>
+                                <!-- Photo -->
+                                <td>
+                                    <img src="{{ i.civileng_photo.url }}"
+                                         class="rounded shadow-sm"
+                                         width="70"
+                                         height="70"
+                                         style="object-fit: cover;">
+                                </td>
 
-                            <!-- Proof -->
-                            <td>
-                                <a href="{{ i.civileng_proof.url }}" 
-                                   target="_blank" 
-                                   class="btn btn-sm btn-outline-primary">
-                                    View
-                                </a>
-                            </td>
-
-                            <!-- Status Badge -->
-                            <td>
-                                {% if i.civileng_status == 0 %}
-                                    <span class="badge bg-warning text-dark">
-                                        Pending
-                                    </span>
-                                {% elif i.civileng_status == 1 %}
-                                    <span class="badge bg-success">
-                                        Accepted
-                                    </span>
-                                {% else %}
-                                    <span class="badge bg-danger">
-                                        Rejected
-                                    </span>
-                                {% endif %}
-                            </td>
-
-                            <!-- Action Buttons -->
-                            <td>
-
-                                {% if i.civileng_status == 0 %}
-                                    <a href="{% url 'Admin:verify' i.id %}" 
-                                       class="btn btn-sm btn-success">
-                                        Accept
+                                <!-- Proof -->
+                                <td>
+                                    <a href="{{ i.civileng_proof.url }}"
+                                       target="_blank"
+                                       class="btn btn-outline-primary btn-sm">
+                                        View
                                     </a>
+                                </td>
 
-                                    <a href="{% url 'Admin:reject' i.id %}" 
-                                       class="btn btn-sm btn-danger">
-                                        Reject
-                                    </a>
+                                <!-- Status -->
+                                <td>
+                                    {% if i.civileng_status == 0 %}
+                                        <span class="badge badge-warning">
+                                            Pending
+                                        </span>
+                                    {% elif i.civileng_status == 1 %}
+                                        <span class="badge badge-success">
+                                            Accepted
+                                        </span>
+                                    {% else %}
+                                        <span class="badge badge-danger">
+                                            Rejected
+                                        </span>
+                                    {% endif %}
+                                </td>
 
-                                {% elif i.civileng_status == 1 %}
-                                    <a href="{% url 'Admin:reject' i.id %}" 
-                                       class="btn btn-sm btn-danger">
-                                        Reject
-                                    </a>
+                                <!-- Actions -->
+                                <td>
+                                    {% if i.civileng_status == 0 %}
+                                        <a href="{% url 'Admin:verify' i.id %}"
+                                           class="btn btn-success btn-sm">
+                                            Accept
+                                        </a>
 
-                                {% else %}
-                                    <a href="{% url 'Admin:verify' i.id %}" 
-                                       class="btn btn-sm btn-success">
-                                        Accept
-                                    </a>
-                                {% endif %}
+                                        <a href="{% url 'Admin:reject' i.id %}"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Reject this engineer?');">
+                                            Reject
+                                        </a>
 
-                            </td>
+                                    {% elif i.civileng_status == 1 %}
+                                        <a href="{% url 'Admin:reject' i.id %}"
+                                           class="btn btn-outline-danger btn-sm">
+                                            Reject
+                                        </a>
 
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="9" class="text-center text-muted">
-                                No Engineer Registrations Found
-                            </td>
-                        </tr>
-                        {% endfor %}
+                                    {% else %}
+                                        <a href="{% url 'Admin:verify' i.id %}"
+                                           class="btn btn-outline-success btn-sm">
+                                            Accept
+                                        </a>
+                                    {% endif %}
+                                </td>
 
-                    </tbody>
+                            </tr>
 
-                </table>
+                            {% empty %}
+                            <tr>
+                                <td colspan="9" class="text-muted text-center">
+                                    No Engineer Registrations Found
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+                </div>
+
             </div>
-
         </div>
     </div>
 
 </div>
 
-</body>
-</html>
+{% endblock content %}
