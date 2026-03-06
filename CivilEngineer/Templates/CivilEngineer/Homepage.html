@@ -58,16 +58,16 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="{% url 'CivilEngineer:Homepage' %}" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="project.html" class="nav-item nav-link">Contacts</a>
+                       <a href="{% url 'CivilEngineer:ViewRequest' %}" class="nav-item nav-link">View Request</a>
+                         <!-- <a href="{% url 'CivilEngineer:MyProfile' %}" class="nav-item nav-link">Profile</a> -->
+                        <!-- <a href="project.html" class="nav-item nav-link">Contacts</a> -->
                         <div class="nav-item dropdown">
-                            <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Registration</a>
+                            <!-- <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Registration</a>
                             <div class="dropdown-menu bg-light mt-2">
                                 <a href="" class="dropdown-item"></a>
                                 <a href="" class="dropdown-item"></a>
                                
-                            </div>
+                            </div> -->
                         </div>
                         <a href="{% url 'CivilEngineer:MyProfile' %}" class="nav-item nav-link">Profile</a>
                     </div>

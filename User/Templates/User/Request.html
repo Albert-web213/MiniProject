@@ -1,0 +1,55 @@
+{% extends 'User/Header.html' %}
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Send Request</h2>
+        <p class="text-muted">Upload plan files and documentation for engineer review</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Plan File -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Plan File</label>
+                            <input type="file" name="file" id="file" class="form-control" required>
+                        </div>
+
+                        <!-- Documentation -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Documentation</label>
+                            <input type="file" name="documentation" id="documentation" class="form-control" required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Description</label>
+                            <textarea name="description" rows="4" class="form-control" placeholder="Enter request details..." required></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-4">
+                                Submit Request
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -7,4 +7,7 @@ urlpatterns = [
   path('Editprofile/',views.Editprofile,name="Editprofile"),
   path('ChangePassword/',views.ChangePassword,name="ChangePassword"),
   path('Homepage/',views.Homepage,name="Homepage"),
+  path('ViewRequest/',views.ViewRequest,name="ViewRequest"),
+  path('Reply/<int:id>',views.Reply,name="Reply")
 ]
+

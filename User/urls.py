@@ -9,5 +9,8 @@ urlpatterns = [
   path('Homepage/',views.Homepage,name="Homepage"),
   path('ViewsCivilEngineering/',views.ViewsCivilEngineering,name="ViewsCivilEngineering"),
   path('Complaint/',views.Complaint,name="Complaint"),
-  path('deletecomplaint/<int:id>',views.deletecomplaint,name="deletecomplaint")
+  path('deletecomplaint/<int:id>',views.deletecomplaint,name="deletecomplaint"),
+  path('Request/<int:cid>',views.Request,name="Request"),
+  path('MyRequest/',views.MyRequest,name="MyRequest"),
+  path('deleterequest/<int:id>',views.deleterequest,name="deleterequest"),
 ]

@@ -2,6 +2,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render,redirect
 from Guest.models import*
+from User.models import*
 from CivilEngineer.models import*
 # Create your views here.
 def MyProfile(request):
@@ -32,3 +33,17 @@ def Homepage(request):
     return render(request,"CivilEngineer/Homepage.html")
 
 
+def ViewRequest(request):
+    requestdata=tbl_request.objects.all()
+    return  render(request,"CivilEngineer/ViewRequest.html",{"requestdata":requestdata})
+
+def Reply(request,id):
+    requestdata=tbl_request.objects.get(id=id)
+    if request.method=="POST":
+       reply=request.POST.get('reply')
+       requestdata.request_reply=reply
+       requestdata.request_status=1
+       requestdata.save()
+       return render(request,"CivilEngineer/Reply.html")
+    else:
+        return render(request,"CivilEngineer/Reply.html",{"requestdata":requestdata})

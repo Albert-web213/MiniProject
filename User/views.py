@@ -64,3 +64,28 @@ def deletecomplaint(request,id):
     tbl_complaint.objects.get(id=id).delete()
     return redirect('User:Complaint')
 
+
+def Request(request,cid):
+    civildata=tbl_civilengineering.objects.get(id=cid)
+    userdata=tbl_user.objects.get(id=request.session['uid'])
+    request_data=tbl_request.objects.all()
+    if request.method=="POST":
+        planefile=request.FILES.get("file")
+        Documentation=request.FILES.get("documentation")
+        Description=request.POST.get("description")
+        tbl_request.objects.create(request_plane_file=planefile,request_doc=Documentation,request_description=Description,user_id=userdata,civileng_id= civildata)
+        return render(request,"User/Request.html")
+        
+    else:
+        return render(request,"User/Request.html",{"request_data":request_data})
+
+   
+
+def MyRequest(request):
+    requestdata=tbl_request.objects.all()
+    return render(request,"User/MyRequest.html",{"requestdata":requestdata})
+
+
+def deleterequest(request,id):
+    tbl_request.objects.get(id=id).delete()
+    return redirect('User:MyRequest')

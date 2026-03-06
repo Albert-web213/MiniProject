@@ -58,14 +58,16 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="{% url 'User:Homepage' %}" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <!-- <a href="about.html" class="nav-item nav-link">About</a> -->
                         <a href="{% url 'User:ViewsCivilEngineering' %}" class="nav-item nav-link">Engineers</a>
                         <a href="{% url 'User:Complaint' %}" class="nav-item nav-link">Complaints</a>
+                        
+                        <a href="{% url 'User:MyRequest' %}" class="nav-item nav-link">MyRequests</a>
                         <div class="nav-item dropdown">
-                            <a href="{% url 'User:MyProfile' %}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                            <!-- <a href="{% url 'User:MyProfile' %}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                             <div class="dropdown-menu bg-light mt-2">
                                 <a href="" class="dropdown-item"></a>
-                                <a href="" class="dropdown-item"></a>
+                                <a href="" class="dropdown-item"></a> -->
                          
                             </div>
                         </div>
