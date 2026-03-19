@@ -5,6 +5,7 @@ from Guest.models import*
 from User.models import*
 from CivilEngineer.models import*
 # Create your views here.
+
 def MyProfile(request):
     civildata= tbl_civilengineering.objects.get(id=request.session['cid'])
     return render(request,"CivilEngineer/MyProfile.html",{'civildata':civildata})
@@ -16,10 +17,10 @@ def Editprofile(request):
         email=request.POST.get("email")
         contact=request.POST.get("contact")
         address=request.POST.get("address")
-        civildata.civileng_name_name=name
-        civildata.civileng_email_email=email
-        civildata.civileng_contact_contact=contact
-        civildata.civileng_address_address=address
+        civildata.civileng_name=name
+        civildata.civileng_email=email
+        civildata.civileng_contact=contact
+        civildata.civileng_address=address
         civildata.save()
         return redirect("CivilEngineer:Editprofile")
     else:

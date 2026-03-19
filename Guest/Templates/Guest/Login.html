@@ -32,12 +32,13 @@
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            animation: fadeIn 0.5s ease;
         }
 
         .login-left {
             background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
-            padding: 50px;
+            padding: 60px;
             width: 50%;
             display: flex;
             flex-direction: column;
@@ -46,15 +47,23 @@
 
         .login-left h2 {
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .login-left p {
             opacity: 0.9;
+            font-size: 14px;
         }
 
         .login-right {
             width: 50%;
             padding: 50px;
+        }
+
+        .login-title {
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 22px;
         }
 
         .form-control {
@@ -67,8 +76,13 @@
             box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.15);
         }
 
+        .input-group-text {
+            background: #f1f5f9;
+            border-radius: 0 10px 10px 0;
+        }
+
         .btn-premium {
-            background: #2563eb;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
             border-radius: 10px;
             padding: 12px;
@@ -77,12 +91,31 @@
         }
 
         .btn-premium:hover {
-            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,99,235,0.3);
         }
 
-        .login-title {
-            font-weight: 600;
-            margin-bottom: 25px;
+        .forgot-link {
+            font-size: 14px;
+            color: #2563eb;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+            color: #1d4ed8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media(max-width:768px) {
@@ -100,13 +133,13 @@
 
 <div class="login-container">
 
-    <!-- Left Branding Section -->
+    <!-- Left Section -->
     <div class="login-left">
-        <h2>Welcome Back</h2>
+        <h2>Welcome Back 👋</h2>
         <p>Login to access your dashboard and manage your activities securely.</p>
     </div>
 
-    <!-- Right Form Section -->
+    <!-- Right Section -->
     <div class="login-right">
 
         <div class="login-title">Sign In</div>
@@ -129,7 +162,7 @@
                        required>
             </div>
 
-            <div class="mb-4">
+            <div class="mb-3">
                 <label class="form-label">Password</label>
                 <div class="input-group">
                     <input type="password"
@@ -142,6 +175,12 @@
                         <i class="fa fa-eye" id="eyeIcon"></i>
                     </span>
                 </div>
+            </div>
+
+            <div class="mb-4 text-end">
+                <a href="{% url 'Guest:forgotpassword' %}" class="forgot-link">
+                    Forgot Password?
+                </a>
             </div>
 
             <div class="d-grid">
@@ -163,12 +202,10 @@
 
         if (password.type === "password") {
             password.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
+            icon.classList.replace("fa-eye", "fa-eye-slash");
         } else {
             password.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
+            icon.classList.replace("fa-eye-slash", "fa-eye");
         }
     }
 </script>

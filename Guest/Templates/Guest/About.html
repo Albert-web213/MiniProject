@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | BUILDORA</title>
+
+{% load static %}
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #ff7a18, #ffb347);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+/* SECTION */
+.section {
+    margin-bottom: 50px;
+}
+.section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* TEAM */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.member {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 220px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.member:hover {
+    transform: translateY(-8px);
+}
+.member img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border: 3px solid #ff7a18;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>About BUILDORA</h1>
+    <p>Smart Solutions for Modern Construction & Design</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="section">
+        <h2>Who We Are</h2>
+        <p style="text-align:center; max-width:700px; margin:auto;">
+            BUILDORA is an innovative platform designed to simplify building design and construction planning.
+            Our goal is to provide smart, efficient, and user-friendly solutions for engineers, architects, and clients.
+        </p>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section">
+        <h2>What We Offer</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Smart Design</h3>
+                <p>AI-based tools to assist in modern building design and planning.</p>
+            </div>
+            <div class="card">
+                <h3>Project Management</h3>
+                <p>Track, manage, and organize construction projects efficiently.</p>
+            </div>
+            <div class="card">
+                <h3>Expert Support</h3>
+                <p>Connect with professionals and get expert advice anytime.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="section">
+        <h2>Our Mission</h2>
+        <p style="text-align:center; max-width:700px; margin:auto;">
+            To revolutionize the construction industry by integrating technology with design,
+            making the building process smarter, faster, and more accessible.
+        </p>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section">
+        <h2>Our Team</h2>
+        <div class="team">
+
+            <div class="member">
+                <img src="{% static 'Main/img/team-1.jpeg' %}" alt="Albert George">
+                <h4>Albert George</h4>
+                <p>Developer</p>
+            </div>
+
+            <div class="member">
+                <img src="{% static 'Main/img/team-2.jpeg' %}" alt="Deepak Dileesh">
+                <h4>Deepak Dileesh</h4>
+                <p>AI & Backend Developer</p>
+            </div>
+
+            <div class="member">
+                <img src="{% static 'Main/img/team-3.jpeg' %}" alt="Adith Krishna">
+                <h4>Adith Krishna</h4>
+                <p>Frontend Developer</p>
+            </div>
+
+            <div class="member">
+                <img src="{% static 'Main/img/team-4.jpeg' %}" alt="Abhimanue Suresh">
+                <h4>Abhimanue Suresh</h4>
+                <p>Marketing Lead</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 BUILDORA | All Rights Reserved
+</div>
+
+</body>
+</html>

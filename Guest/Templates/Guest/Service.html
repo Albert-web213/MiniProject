@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | BUILDORA</title>
+
+{% load static %}
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #ff7a18, #ffb347);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+/* SECTION */
+.section {
+    margin-bottom: 50px;
+}
+.section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* SERVICE CARDS */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.service-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: 0.3s;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+}
+.service-card img {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.feature-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* CTA */
+.cta {
+    background: #ff7a18;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 10px;
+}
+.cta button {
+    padding: 12px 25px;
+    border: none;
+    background: white;
+    color: #ff7a18;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Our Services</h1>
+    <p>Innovative Solutions for Smart Construction</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <!-- SERVICES -->
+    <div class="section">
+        <h2>What We Provide</h2>
+        <div class="services">
+
+            <div class="service-card">
+                <img src="{% static 'Main/img/design.png' %}" alt="">
+                <h3>Building Design</h3>
+                <p>Modern and AI-powered building design solutions tailored to your needs.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="{% static 'Main/img/management.png' %}" alt="">
+                <h3>Project Management</h3>
+                <p>Efficient tracking and management of construction projects.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="{% static 'Main/img/consulting.png' %}" alt="">
+                <h3>Consultation</h3>
+                <p>Expert guidance from experienced engineers and professionals.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="{% static 'Main/img/cost.png' %}" alt="">
+                <h3>Cost Estimation</h3>
+                <p>Accurate budget planning and cost estimation tools.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section">
+        <h2>Why Choose BUILDORA?</h2>
+        <div class="features">
+
+            <div class="feature-box">
+                <h4>AI Integration</h4>
+                <p>Smart tools to simplify complex design processes.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>User Friendly</h4>
+                <p>Easy-to-use platform designed for everyone.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>Reliable</h4>
+                <p>Trusted solutions for accurate and efficient results.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="section">
+        <div class="cta">
+            <h2>Start Your Project Today</h2>
+            <p>Join BUILDORA and transform your construction experience.</p>
+            <button>Get Started</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 BUILDORA | All Rights Reserved
+</div>
+
+</body>
+</html>

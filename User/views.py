@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from Guest.models import*
 from User.models import*
+from django.http import JsonResponse
+from .utils import GeminiDesignGenerator
 # Create your views here.
 def MyProfile(request):
     userdata = tbl_user.objects.get(id=request.session['uid'])
@@ -89,3 +91,56 @@ def MyRequest(request):
 def deleterequest(request,id):
     tbl_request.objects.get(id=id).delete()
     return redirect('User:MyRequest')
+
+def createplan(request):
+    return render(request, "User/CreatePlan.html")
+
+
+def generate_design(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Method not allowed."}, status=405)
+
+    data = {
+        "width": request.POST.get("width"),
+        "length": request.POST.get("length"),
+        "sqft": request.POST.get("sqft"),
+        "floors": int(request.POST.get("floors", 1)),
+        "shape": request.POST.get("shape", "Rectangular"),
+        "unit_type": request.POST.get("unit_type", "2BHK"),
+        "bedrooms": request.POST.get("bedrooms", "2"),
+        "bathrooms": request.POST.get("bathrooms", "2"),
+        "style": request.POST.get("style", "Modern Premium"),
+        "soil": request.POST.get("soil", "Firm"),
+        "kitchen_type": request.POST.get("kitchen_type", "Open"),
+        "budget": request.POST.get("budget", "Standard"),
+        "entrance": request.POST.get("entrance", "Any"),
+        "vastu": request.POST.get("vastu", "Yes"),
+        "parking": request.POST.get("parking", "No"),
+        "balcony": request.POST.get("balcony", "No"),
+        "puja_room": request.POST.get("puja_room", "No"),
+        "utility_area": request.POST.get("utility_area", "No"),
+        "dining": request.POST.get("dining", "Yes"),
+        "study_room": request.POST.get("study_room", "No"),
+        "prefs": request.POST.get("prefs", "").strip(),
+    }
+
+    if not ((data["width"] and data["length"]) or data["sqft"]):
+        return JsonResponse(
+            {"error": "Please provide plot width and length, or total square footage."},
+            status=400
+        )
+
+    try:
+        generator = GeminiDesignGenerator()
+        result = generator.generate_plan(data)
+
+        if result:
+            return JsonResponse(result)
+
+        return JsonResponse(
+            {"error": "AI could not generate the plan. Please check inputs or API configuration."},
+            status=500
+        )
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

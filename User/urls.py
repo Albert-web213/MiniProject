@@ -13,4 +13,7 @@ urlpatterns = [
   path('Request/<int:cid>',views.Request,name="Request"),
   path('MyRequest/',views.MyRequest,name="MyRequest"),
   path('deleterequest/<int:id>',views.deleterequest,name="deleterequest"),
+
+  path('createplan/', views.createplan, name='createplan'),
+  path('generate_design/', views.generate_design, name='generate_design'),
 ]
